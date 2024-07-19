@@ -1,11 +1,16 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 import axios from "axios";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFrown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faWind,
+  faFrown,
+  faEarthEurope,
+  faCloud,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Spinner from "../spinner/Spinner";
+
 import "./weather.scss";
 
 interface WeatherData {
@@ -114,10 +119,11 @@ const Weather = () => {
             onChange={inputHandler}
             onKeyPress={searchHandler}
           />
-          <label>Enter city name...</label>
+          <label>
+            <FontAwesomeIcon icon={faEarthEurope} /> Enter city name...
+          </label>
         </div>
         {weather.loading && <Spinner />}
-
         {weather.error && (
           <div className="error-message">
             <FontAwesomeIcon icon={faFrown} />
@@ -145,8 +151,12 @@ const Weather = () => {
               </p>
             </div>
             <div className="weather-wind">
-              <p>Осадки: <span>{weather.data.weather?.[0].description}</span></p>
-              <p>Скорость ветра: <span>{weather.data.wind?.speed} m/s</span></p>
+              <p>
+                Осадки: <span>{weather.data.weather?.[0].description}</span>
+              </p>
+              <p>
+                Скорость ветра <FontAwesomeIcon icon={faWind} />: <span>{weather.data.wind?.speed} m/s</span>
+              </p>
             </div>
           </div>
         )}
