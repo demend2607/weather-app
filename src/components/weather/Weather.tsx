@@ -2,12 +2,7 @@ import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faWind,
-  faFrown,
-  faEarthEurope,
-  faCloud,
-} from "@fortawesome/free-solid-svg-icons";
+import { faWind, faFrown, faEarthEurope } from "@fortawesome/free-solid-svg-icons";
 
 import Spinner from "../spinner/Spinner";
 
@@ -42,39 +37,19 @@ const Weather = () => {
   });
 
   const toDateFunction = () => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const WeekDays = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const WeekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     const currentDate = new Date();
-    const date = `${WeekDays[currentDate.getDay()]} ${currentDate.getDate()} ${
-      months[currentDate.getMonth()]
-    }`;
+    const date = `${WeekDays[currentDate.getDay()]} ${currentDate.getDate()} ${months[currentDate.getMonth()]}`;
     return date;
   };
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
+
+  console.log(import.meta.env.WEATHER_API_KEY);
+
 
   const searchHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -82,7 +57,7 @@ const Weather = () => {
       setInput("");
       setWeather({ ...weather, loading: true });
       const url = "https://api.openweathermap.org/data/2.5/weather?";
-      const api_key = "83300600f36f30cc967b178de0499769";
+      const api_key = import.meta.env.VITE_WEATHER_KEY;
       await axios
         .get(url, {
           params: {
@@ -110,15 +85,7 @@ const Weather = () => {
       <div className="weather-container">
         <h1>Weather App</h1>
         <div className="search-bar">
-          <input
-            type="text"
-            className="city-search"
-            placeholder=""
-            name="query"
-            value={input}
-            onChange={inputHandler}
-            onKeyPress={searchHandler}
-          />
+          <input type="text" className="city-search" placeholder="" name="query" value={input} onChange={inputHandler} onKeyPress={searchHandler} />
           <label>
             <FontAwesomeIcon icon={faEarthEurope} /> Enter city name...
           </label>
@@ -136,11 +103,7 @@ const Weather = () => {
             <p className="toDate">{toDateFunction()}</p>
             <div className="icon">
               <img
-                src={`https://openweathermap.org/img/wn/${
-                  !weather.data.weather?.[0].icon
-                    ? "01d"
-                    : weather.data.weather?.[0].icon
-                }@2x.png`}
+                src={`https://openweathermap.org/img/wn/${!weather.data.weather?.[0].icon ? "01d" : weather.data.weather?.[0].icon}@2x.png`}
                 alt={weather.data.weather?.[0].description}
               />
               <p className="weather-temp">
