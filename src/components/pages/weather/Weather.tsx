@@ -4,7 +4,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWind, faFrown, faEarthEurope } from "@fortawesome/free-solid-svg-icons";
 
-import Spinner from "../spinner/Spinner";
+import Spinner from "../../spinner/Spinner";
 
 import "./weather.scss";
 
@@ -50,7 +50,6 @@ const Weather = () => {
 
   console.log(import.meta.env.WEATHER_API_KEY);
 
-
   const searchHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -81,48 +80,61 @@ const Weather = () => {
   console.log("weather", weather);
 
   return (
-    <div className="weather-app">
-      <div className="weather-container">
-        <h1>Weather App</h1>
-        <div className="search-bar">
-          <input type="text" className="city-search" placeholder="" name="query" value={input} onChange={inputHandler} onKeyPress={searchHandler} />
-          <label>
-            <FontAwesomeIcon icon={faEarthEurope} /> Enter city name...
-          </label>
-        </div>
-        {weather.loading && <Spinner />}
-        {weather.error && (
-          <div className="error-message">
-            <FontAwesomeIcon icon={faFrown} />
-            <span style={{ fontSize: "20px" }}> City not found</span>
-          </div>
-        )}
-        {weather && weather.data && weather.data.main && (
-          <div className="weather-body">
-            <h2 className="city">{weather.data?.name}</h2>
-            <p className="toDate">{toDateFunction()}</p>
-            <div className="icon">
-              <img
-                src={`https://openweathermap.org/img/wn/${!weather.data.weather?.[0].icon ? "01d" : weather.data.weather?.[0].icon}@2x.png`}
-                alt={weather.data.weather?.[0].description}
+    <div className="container">
+      <div className="weather-section">
+        
+        <div className="weather-app">
+          <div className="weather-container">
+            <h1>Weather App</h1>
+            <div className="search-bar">
+              <input
+                type="text"
+                className="city-search"
+                placeholder=""
+                name="query"
+                value={input}
+                onChange={inputHandler}
+                onKeyPress={searchHandler}
               />
-              <p className="weather-temp">
-                <sup>
-                  {!weather.data.main?.temp ? 0 : weather.data.main?.temp}&nbsp;
-                  <sup>o</sup>C
-                </sup>
-              </p>
+              <label>
+                <FontAwesomeIcon icon={faEarthEurope} /> Enter city name...
+              </label>
             </div>
-            <div className="weather-wind">
-              <p>
-                Осадки: <span>{weather.data.weather?.[0].description}</span>
-              </p>
-              <p>
-                Скорость ветра <FontAwesomeIcon icon={faWind} />: <span>{weather.data.wind?.speed} m/s</span>
-              </p>
-            </div>
+            {weather.loading && <Spinner />}
+            {weather.error && (
+              <div className="error-message">
+                <FontAwesomeIcon icon={faFrown} />
+                <span style={{ fontSize: "20px" }}> City not found</span>
+              </div>
+            )}
+            {weather && weather.data && weather.data.main && (
+              <div className="weather-body">
+                <h2 className="city">{weather.data?.name}</h2>
+                <p className="toDate">{toDateFunction()}</p>
+                <div className="icon">
+                  <img
+                    src={`https://openweathermap.org/img/wn/${!weather.data.weather?.[0].icon ? "01d" : weather.data.weather?.[0].icon}@2x.png`}
+                    alt={weather.data.weather?.[0].description}
+                  />
+                  <p className="weather-temp">
+                    <sup>
+                      {!weather.data.main?.temp ? 0 : weather.data.main?.temp}&nbsp;
+                      <sup>o</sup>C
+                    </sup>
+                  </p>
+                </div>
+                <div className="weather-wind">
+                  <p>
+                    Осадки: <span>{weather.data.weather?.[0].description}</span>
+                  </p>
+                  <p>
+                    Скорость ветра <FontAwesomeIcon icon={faWind} />: <span>{weather.data.wind?.speed} m/s</span>
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

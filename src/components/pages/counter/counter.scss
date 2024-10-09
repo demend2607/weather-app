@@ -1,0 +1,39 @@
+.counter-section {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  p {
+    margin: 0;
+  }
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: seashell;
+  padding: 5px 35px;
+  border-radius: 8px;
+  &.zero {
+    background-color: seashell;
+  }
+  &.low {
+    background-color: rgba(0, 255, 128, 0.822);
+  }
+  &.high {
+    background-color: rgba(255, 219, 59, 0.877);
+  }
+}
+.counter-btns {
+  margin-top: 10px;
+  .counter-ref {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .counter-calc {
+    width: 47%;
+    margin: 0 2px;
+  }
+}
+
