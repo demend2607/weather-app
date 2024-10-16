@@ -5,6 +5,7 @@ import Home from "./components/pages/home/Home";
 import Counter from "./components/pages/counter/Counter";
 import Weather from "./components/pages/weather/Weather";
 import Writter from "./components/pages/writter/Writter";
+import WordAnalytics from "./components/pages/word-analytics/WordAnalytics";
 
 import "./app.scss";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/weather" element={<Weather />} />
           <Route path="/counter" element={<Counter />} />
           <Route path="/writter" element={<Writter />} />
+          <Route path="/word-analytics" element={<WordAnalytics />} />
       </Route>
     </Routes>
   );

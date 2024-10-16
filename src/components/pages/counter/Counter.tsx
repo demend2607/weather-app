@@ -28,27 +28,22 @@ export default function Counter() {
     }
   };
   return (
-    <div className="container">
-      <div className="counter-section">
-        <div className="application">
-          <div className={`counter ${counter == 0 ? "zero" : counter <= 5 ? "low" : "high"}`}>
-            <h2>Counter</h2>
-            <p>{counter}</p>
-          </div>
-
-          <div className="counter-btns">
-            <button className="counter-ref" onClick={() => couterHandler("reset")}>
-              <FontAwesomeIcon icon={faArrowsRotate} />
-            </button>
-            <button className="counter-calc" onClick={() => couterHandler("decrement")}>
-              -
-            </button>
-            <button className="counter-calc" onClick={() => couterHandler("increment")}>
-              +
-            </button>
-          </div>
-        </div>
+    <>
+      <div className={`counter ${counter == 0 ? "zero" : counter <= 6 ? "low" : "high"}`}>
+        <h2>Counter</h2>
+        <p>{counter}</p>
       </div>
-    </div>
+      <div className="counter-btns">
+        <button className="counter-ref" onClick={() => couterHandler("reset")}>
+          <FontAwesomeIcon icon={faArrowsRotate} />
+        </button>
+        <button className="counter-calc" onClick={() => couterHandler("decrement")}>
+          -
+        </button>
+        <button className="counter-calc" onClick={() => couterHandler("increment")}>
+          +
+        </button>
+      </div>
+    </>
   );
 }
