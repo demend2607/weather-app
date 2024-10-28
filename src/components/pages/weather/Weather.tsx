@@ -80,7 +80,7 @@ const Weather = () => {
   console.log("weather", weather);
 
   return (
-    <>
+    <div className="application">
       <h1>Weather App</h1>
       <div className="search-bar">
         <input type="text" className="city-search" placeholder="" name="query" value={input} onChange={inputHandler} onKeyPress={searchHandler} />
@@ -121,7 +121,7 @@ const Weather = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default Weather;

@@ -6,9 +6,7 @@ const Container = () => {
     <main>
       <div className="container">
         <div className="section">
-          <div className="application">
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
       </div>
     </main>

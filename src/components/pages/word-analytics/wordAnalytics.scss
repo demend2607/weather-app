@@ -1,0 +1,77 @@
+.word-analytics {
+  width: 1050px;
+  height: 520px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.textarea {
+  resize: none;
+  flex: 2;
+  font: inherit;
+  padding: 30px 40px;
+  font-size: 22px;
+}
+.textarea::placeholder {
+  font-weight: 500;
+  color: #959c9f;
+}
+
+.textarea > textarea {
+  height: 100%;
+  width: 100%;
+}
+.stats {
+  flex: 1.3;
+  background-color: #f1f6f8;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stat {
+  flex: 1 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat:nth-child(1),
+.stat:nth-child(2) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.stat:nth-child(2),
+.stat:nth-child(4) {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.stat_number {
+  color: #4d5457;
+  font-weight: 600;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.stat-limit {
+  color: red;
+}
+.stat_head {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: #747a7c;
+}
+.warning {
+  position: absolute;
+  bottom: 15px;
+  left: 35px;
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 5px;
+}

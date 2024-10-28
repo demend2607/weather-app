@@ -28,7 +28,7 @@ export default function Counter() {
     }
   };
   return (
-    <>
+    <div className="application">
       <div className={`counter ${counter == 0 ? "zero" : counter <= 6 ? "low" : "high"}`}>
         <h2>Counter</h2>
         <p>{counter}</p>
@@ -44,6 +44,6 @@ export default function Counter() {
           +
         </button>
       </div>
-    </>
+    </div>
   );
 }

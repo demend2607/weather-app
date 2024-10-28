@@ -19,7 +19,7 @@ const Writter = () => {
     setSubmittedWriter(null);
   };
   return (
-    <>
+    <div className="application">
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="input-container">
@@ -42,7 +42,7 @@ const Writter = () => {
           <p>Email: {submittedWriter.email}</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default Writter;
