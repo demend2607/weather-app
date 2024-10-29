@@ -23,6 +23,9 @@ export default function Header() {
           <li className="menu__item">
             <Link to="/word-analytics">Word Analytic</Link>
           </li>
+          <li className="menu__item">
+            <Link to="/trekbag">Trekbag</Link>
+          </li>
         </ul>
       </nav>
     </header>

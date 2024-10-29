@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "./wordAnalytics.scss";
 import Stat from "./Stat";
 
@@ -14,7 +14,7 @@ const WordAnalytics = () => {
     numberOfTwitter: 2200 - lengthText.length,
   }
 
-  const handleText = (e) => {
+  const handleText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let newText = e.target.value;
     if (newText.includes("<script>")) {
       setWarningText("No script tag allowed!");
@@ -43,4 +43,5 @@ const WordAnalytics = () => {
     </div>
   );
 };
+
 export default WordAnalytics;
