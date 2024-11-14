@@ -30,9 +30,12 @@
     grid-row: 2 / 3;
     background-color: #fff;
     overflow-y: scroll;
-    scrollbar-color: red orange;
-    scrollbar-width: thin;
+    // scrollbar-color: red orange;
+    // scrollbar-width: thin;
     position: relative;
+    padding: 10px 28px;
+    display: flex;
+    flex-direction: column;
   }
 
   .item-list::-webkit-scrollbar {
@@ -149,6 +152,26 @@
     padding: 18px 25px 28px;
     display: flex;
     flex-direction: column;
+    .btn {
+      height: 45px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      background-color: #473a2b;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s;
+      margin-top: 0;
+      text-transform: none;
+    }
+
+    .btn:hover {
+      background-color: #322618;
+    }
   }
 
   h2 {
@@ -170,26 +193,6 @@
   form > input::placeholder {
     font-style: italic;
   }
-
-  .btn {
-    height: 45px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    background-color: #473a2b;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s;
-  }
-
-  .btn:hover {
-    background-color: #322618;
-  }
-
   .btn--secondary {
     opacity: 0.85;
     font-size: 14px;
@@ -220,4 +223,15 @@
     text-transform: uppercase;
     letter-spacing: 0.2em;
   }
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+}
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
 }
