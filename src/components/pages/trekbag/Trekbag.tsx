@@ -1,57 +1,22 @@
-import { ChangeEvent, FormEvent, useRef, useState, useMemo, useEffect } from "react";
-
 import TrekBtn from "./TrekBtn";
 import TrekItems from "./TrekItems";
-import treckSort from "./treckSort";
-import { initialItems, TrekItemType } from "../../libs/InitialState";
 
 import "./trekbag.scss";
 
+import { useItemsContext } from "../../libs/hooks";
+
 export default function Trekbag() {
-  const itemFromLocalStorage = JSON.parse(localStorage.getItem("trekItems") || "[]");
-  const [itemText, setItemText] = useState("");
-  const [trekItems, setTrekItems] = useState<TrekItemType[]>(() => itemFromLocalStorage || initialItems);
-
-  const inputRef = useRef;
-  const checkedCount = useMemo(() => trekItems.filter((item) => item.packed).length, [trekItems]);
-  const totalCount = useMemo(() => trekItems.length, [trekItems]);
-
-  useEffect(() => {
-    localStorage.setItem("trekItems", JSON.stringify(trekItems));
-  }, [trekItems]);
-
-  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setItemText(e.target.value);
-  };
-
-  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!itemText) {
-      alert("Item cant be empty");
-      inputRef.current?.focus();
-      return;
-    }
-    const newItem = {
-      id: new Date().getTime(),
-      text: itemText,
-      packed: false,
-    };
-    setTrekItems((prev) => [...prev, newItem]);
-    setItemText("");
-  };
-
-  const handleRemoveAllItems = () => {
-    setTrekItems([]);
-  };
-  const handleRseteToInitial = () => {
-    setTrekItems(initialItems);
-  };
-  const handleMarkAllAsComplete = () => {
-    setTrekItems((prev) => prev.map((item) => ({ ...item, packed: true })));
-  };
-  const handleMarkAllAsUncomplete = () => {
-    setTrekItems((prev) => prev.map((item) => ({ ...item, packed: false })));
-  };
+  const {
+    itemText,
+    handleRemoveAllItems,
+    handleMarkAllAsComplete,
+    handleMarkAllAsUncomplete,
+    onSubmitHandler,
+    changeHandler,
+    handleResetToInitial,
+    checkedCount,
+    totalCount,
+  } = useItemsContext();
 
   return (
     <div className="trekbag">
@@ -62,7 +27,7 @@ export default function Trekbag() {
         </p>
       </div>
 
-      <TrekItems items={trekItems} setTrekItems={setTrekItems} />
+      <TrekItems />
       <div className="sidebar">
         <form onSubmit={onSubmitHandler}>
           <h2>Add an item</h2>
@@ -76,7 +41,7 @@ export default function Trekbag() {
           <TrekBtn onсlick={handleMarkAllAsUncomplete} type="secondary">
             Mark all as incomplete
           </TrekBtn>
-          <TrekBtn onсlick={handleRseteToInitial} type="secondary">
+          <TrekBtn onсlick={handleResetToInitial} type="secondary">
             Reset to initial
           </TrekBtn>
           <TrekBtn onсlick={handleRemoveAllItems} type="secondary">

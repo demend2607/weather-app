@@ -26,9 +26,3 @@ function App() {
 }
 
 export default App;
-
-
-// if ($_REQUEST['REQUEST_VARIABLE_VALUE_SUCCESS'] == 'success') {
-//   // Execute the script
-//   echo '<script>_tmr.push({ type: \'reachGoal\', id: 3570954, goal: \'lead\'});</script>';
-// }
