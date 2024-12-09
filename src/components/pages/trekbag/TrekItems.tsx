@@ -1,15 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
-import { TrekItemType } from "../../libs/InitialState";
-import { ItemsContext } from "../../../contexts/TrekBagContextProvider";
+import { TrekItemType } from "../../lib/InitialState";
 import TreckSort from "./TreckSort";
-import { useItemsContext } from "../../libs/hooks";
+import { useItemsStore } from "../../store/itemsStore";
 
 export default function TrekItems() {
-  const { trekItems } = useItemsContext();
+  const items = useItemsStore((state) => state.items);
 
   const [sortBy, setSortBy] = useState("default");
-  const sortedItems = [...trekItems].sort((a, b) => {
+  const sortedItems = [...items].sort((a, b) => {
     if (sortBy === "default") {
       return a.text.localeCompare(b.text);
     }
@@ -23,8 +22,8 @@ export default function TrekItems() {
   });
   return (
     <ul className="item-list">
-      {trekItems.length === 0 && <div className="empty">Your trekbag is empty</div>}
-      {trekItems.length > 0 ? <TreckSort sortBy={sortBy} setSortBy={setSortBy} /> : null}
+      {items.length === 0 && <div className="empty">Your trekbag is empty</div>}
+      {items.length > 0 ? <TreckSort sortBy={sortBy} setSortBy={setSortBy} /> : null}
       {sortedItems.map((item) => (
         <TrekItem key={item.id} item={item} />
       ))}
@@ -33,15 +32,16 @@ export default function TrekItems() {
 }
 
 function TrekItem({ item }: { item: TrekItemType }) {
-  const { handlerToggle, deleteHandler } = useItemsContext();
+  const toggleItem = useItemsStore((state) => state.toggleItem);
+  const deleteItem = useItemsStore((state) => state.deleteItem);
 
   return (
     <li className="item">
       <label htmlFor="">
-        <input checked={item.packed} type="checkbox" onChange={() => handlerToggle(item.id)} readOnly />
+        <input checked={item.packed} type="checkbox" onChange={() => toggleItem(item.id)} readOnly />
         {item.text}
       </label>
-      <button onClick={() => deleteHandler(item.id)}>❌</button>
+      <button onClick={() => deleteItem(item.id)}>❌</button>
     </li>
   );
 }

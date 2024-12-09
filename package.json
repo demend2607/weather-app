@@ -21,7 +21,8 @@
     "react-scripts": "^3.0.1",
     "react-select": "^5.8.3",
     "sass": "^1.77.6",
-    "yarn": "^1.22.22"
+    "yarn": "^1.22.22",
+    "zustand": "4.5.5"
   },
   "devDependencies": {
     "@types/node": "^20.14.11",

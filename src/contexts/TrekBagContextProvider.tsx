@@ -1,5 +1,5 @@
 import { ChangeEvent, ChangeEventHandler, createContext, FormEvent, MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
-import { initialItems, TrekItemType } from "../components/libs/InitialState";
+import { initialItems, TrekItemType } from "../components/lib/InitialState";
 
 interface ItemsContextType {
   itemText?: string;
