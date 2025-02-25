@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useItemsStore } from "../../store/itemsStore";
+import { useItemsStore } from "./lib/itemsStore";
 import TrekBtn from "./TrekBtn";
 import TrekItems from "./TrekItems";
 

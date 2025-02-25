@@ -5,12 +5,24 @@ input[type="text"] {
   letter-spacing: 1px;
 }
 
+.h1 {
+  padding-bottom: 20px;
+}
+
 .search-bar {
   position: relative;
+  button {
+    display: contents;
+    padding-left: 5px;
+    &:hover {
+      color: #39993d;
+    }
+  }
 }
 .search-bar input {
   border-radius: 5px;
   padding: 5px;
+  margin-right: 10px;
 }
 .city-search {
   border: 0;
@@ -19,19 +31,20 @@ input[type="text"] {
   background-color: transparent;
 }
 .city-search ~ label {
+  pointer-events: none;
   position: absolute;
   left: -0px;
   width: 100%;
-  top: 9px;
+  top: 8px;
   color: #aaa;
   transition: 0.3s;
-  z-index: -1;
   letter-spacing: 0.5px;
 }
+
 .city-search:focus ~ label,
 .has-content.city-search ~ label {
-  top: -10px;
-  left: -30px;
+  top: -12px;
+  left: -7px;
   font-size: 13px;
   color: #4caf50;
   transition: 0.3s;

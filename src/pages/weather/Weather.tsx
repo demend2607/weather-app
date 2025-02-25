@@ -1,11 +1,9 @@
-import { ChangeEvent, KeyboardEvent, useState } from "react";
-
+import { ChangeEvent, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWind, faFrown, faEarthEurope } from "@fortawesome/free-solid-svg-icons";
+import { faWind, faFrown, faEarthEurope, faEarthAfrica } from "@fortawesome/free-solid-svg-icons";
 
-import Spinner from "../../spinner/Spinner";
-
+import Spinner from "../../shared/spinner/Spinner";
 import "./weather.scss";
 
 interface WeatherData {
@@ -48,15 +46,15 @@ const Weather = () => {
     setInput(e.target.value);
   };
 
-  console.log(import.meta.env.WEATHER_API_KEY);
+  console.log("777", import.meta.env.VITE_API_WEATHER);
 
-  const searchHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+  const searchHandler = async (e) => {
+    if (e.key === "Enter" || !e.key) {
       e.preventDefault();
       setInput("");
       setWeather({ ...weather, loading: true });
       const url = "https://api.openweathermap.org/data/2.5/weather?";
-      const api_key = import.meta.env.VITE_WEATHER_KEY;
+      const api_key = import.meta.env.VITE_API_WEATHER;
       await axios
         .get(url, {
           params: {
@@ -81,12 +79,21 @@ const Weather = () => {
 
   return (
     <div className="application">
-      <h1>Weather App</h1>
+      <h1 className="h1">Weather App</h1>
       <div className="search-bar">
-        <input type="text" className="city-search" placeholder="" name="query" value={input} onChange={inputHandler} onKeyPress={searchHandler} />
-        <label>
-          <FontAwesomeIcon icon={faEarthEurope} /> Enter city name...
-        </label>
+        <input
+          type="text"
+          className={`city-search ${input ? "has-content" : ""}`}
+          placeholder=""
+          name="query"
+          value={input}
+          onChange={inputHandler}
+          onKeyPress={searchHandler}
+        />
+        <label>Enter city name...</label>
+        <button onClick={searchHandler}>
+          <FontAwesomeIcon icon={input ? faEarthAfrica : faEarthEurope} />
+        </button>
       </div>
       {weather.loading && <Spinner />}
       {weather.error && (

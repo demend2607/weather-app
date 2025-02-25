@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { TrekItemType } from "../../lib/InitialState";
+import { TrekItemType } from "../../entities/trekItems/InitialState";
 import TreckSort from "./TreckSort";
-import { useItemsStore } from "../../store/itemsStore";
+import { useItemsStore } from "./lib/itemsStore";
 
 export default function TrekItems() {
   const items = useItemsStore((state) => state.items);

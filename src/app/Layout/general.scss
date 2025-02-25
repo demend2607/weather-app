@@ -42,6 +42,11 @@
   }
 }
 // Container
+.layout {
+  display: flex; /* Создаем гибкую структуру */
+  flex-direction: column; /* Располагаем элементы вертикально */
+  min-height: 100vh;
+}
 main {
   padding-top: 60px;
 }
@@ -67,11 +72,16 @@ main {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  h2 {
+    margin-bottom: 8px;
+  }
 }
 // Footer
 footer {
   width: 1050px;
-  margin: 15px auto;
+  padding: 10px 0;
+  margin: auto auto 0;
+
   display: flex;
   justify-content: space-between;
   opacity: 0.4;

@@ -7,6 +7,9 @@
   display: flex;
   overflow: hidden;
   position: relative;
+  textarea {
+    all: unset;
+  }
 }
 .textarea {
   resize: none;

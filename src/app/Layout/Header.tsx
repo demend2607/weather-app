@@ -12,19 +12,22 @@ export default function Header() {
             <Link to="/">Home</Link>
           </li>
           <li className="menu__item">
-            <Link to="/weather">Weather</Link>
-          </li>
-          <li className="menu__item">
             <Link to="/counter">Counter</Link>
           </li>
           <li className="menu__item">
             <Link to="/writter">Writter</Link>
           </li>
           <li className="menu__item">
+            <Link to="/weather">Weather</Link>
+          </li>
+          <li className="menu__item">
             <Link to="/word-analytics">Word Analytic</Link>
           </li>
           <li className="menu__item">
             <Link to="/trekbag">Trekbag</Link>
+          </li>
+          <li className="menu__item">
+            <Link to="/corp-comment">CorpComment</Link>
           </li>
         </ul>
       </nav>

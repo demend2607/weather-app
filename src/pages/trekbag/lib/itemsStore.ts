@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { initialItems, TrekItemType } from "../lib/InitialState";
+
+import { initialItems, TrekItemType } from "./InitialState";
 
 interface ItemsContextType {
   items: TrekItemType[];
