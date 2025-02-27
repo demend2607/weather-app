@@ -2,7 +2,7 @@
   {
     "id": 1,
     "upvoteCount": 222,
-    "badgeLetter": "L",
+    "badgeLetter": "B",
     "companyName": "Bytegrad",
     "text": "Some text about company with #hashtag.",
     "daysAgo": 4
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "upvoteCount": 322,
-    "badgeLetter": "B",
+    "badgeLetter": "N",
     "companyName": "Nike",
     "text": "Some sdfsfsdfsdfsdfsd.",
     "daysAgo": 3
@@ -18,8 +18,8 @@
   {
     "id": 3,
     "upvoteCount": 122,
-    "badgeLetter": "I",
-    "companyName": "Khabarovsk",
+    "badgeLetter": "L",
+    "companyName": "Leet",
     "text": "Hello! ertwetergdfgcxvb.",
     "daysAgo": 1
   }
