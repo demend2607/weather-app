@@ -2,25 +2,25 @@
   {
     "id": 1,
     "upvoteCount": 222,
-    "badgeLetter": "L",
-    "companyName": "Bytegrad",
-    "text": "Some text about company with #hashtag.",
+    "badgeLetter": "B",
+    "companyName": "Nike",
+    "text": "Some text about company #Nike.",
     "daysAgo": 4
   },
   {
     "id": 2,
     "upvoteCount": 322,
-    "badgeLetter": "B",
-    "companyName": "Nike",
-    "text": "Some sdfsfsdfsdfsdfsd.",
+    "badgeLetter": "A",
+    "companyName": "Amazon",
+    "text": "Hello welcome to #Amazon.",
     "daysAgo": 3
   },
   {
     "id": 3,
     "upvoteCount": 122,
-    "badgeLetter": "I",
-    "companyName": "Khabarovsk",
-    "text": "Hello! ertwetergdfgcxvb.",
+    "badgeLetter": "L",
+    "companyName": "Leetcode",
+    "text": "Hello! text with hashtag  #Leetcode.",
     "daysAgo": 1
   }
 ]

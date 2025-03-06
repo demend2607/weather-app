@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
-import { useFeedbackStore } from "./lib/corpStore";
+import { useFeedbackStore } from "./lib/feedbackItemsStore";
+import { FeedbackItemType } from "./lib/InitialState";
 
-export default function FeedbackItem({ feedbackItem }) {
+export default function FeedbackItem({ feedbackItem }: { feedbackItem: FeedbackItemType }) {
   const upvoteIncreased = useFeedbackStore((state) => state.upvoteIncreased);
 
   return (
@@ -19,7 +20,7 @@ export default function FeedbackItem({ feedbackItem }) {
         <p>{feedbackItem.companyName}</p>
         <p>{feedbackItem.text}</p>
       </div>
-      <p>{feedbackItem.daysAgo}d</p>
+      <p>{feedbackItem.daysAgo === 0 ? "NEW" : `${feedbackItem.daysAgo}d`}</p>
     </li>
   );
 }

@@ -1,9 +1,20 @@
+import { useFeedbackStore } from "./lib/feedbackItemsStore";
+
 const HashtagList = () => {
+  const hashtags = useFeedbackStore((state) => state.hashtags);
+  // let textHandle = useFeedbackStore((state) => state.textHandle);
+
+  const handleHashtag = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    return;
+  };
   return (
     <div className="hashtags">
-      <li>
-        <button>#Hashtag</button>
-      </li>
+      {hashtags.map((hashtag) => (
+        <li key={hashtag.id}>
+          <button onClick={handleHashtag}>{hashtag.text}</button>
+        </li>
+      ))}
     </div>
   );
 };

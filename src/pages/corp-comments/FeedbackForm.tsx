@@ -1,28 +1,43 @@
 import { useState } from "react";
 
 import { MAX_CHAR } from "./lib/InitialState";
-import { useFeedbackStore } from "./lib/corpStore";
+import { useFeedbackStore } from "./lib/feedbackItemsStore";
 
 export default function FeedbackForm() {
   const [text, setText] = useState("");
   const charCount = MAX_CHAR - text.length;
 
-  const items = useFeedbackStore((state) => state.items);
   const addItem = useFeedbackStore((state) => state.addItem);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // let textHandle = useFeedbackStore((state) => state.textHandle);
+  const addHashtag = useFeedbackStore((state) => state.addHashtag);
+
+  const handleAddToList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!text) {
+      alert("Please enter some text");
+      return;
+    }
+    const companyName = text
+      .split(" ")
+      .find((word) => word.startsWith("#"))
+      ?.substring(1);
+    if (!companyName) {
+      alert("Please include a #hashtag for the company name");
+      return;
+    }
+    const companyTag = text.split(" ").find((word) => word.startsWith("#"));
+    addHashtag(companyTag);
     addItem(text);
     setText("");
-    console.log(items);
   };
-  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    console.log(text);
     return setText(e.target.value.slice(0, MAX_CHAR));
   };
+
   return (
-    <form className="form" action="" onSubmit={handleSubmit}>
-      <textarea name="" id="feedback-textarea" spellCheck={false} value={text} onChange={handleInput}></textarea>
+    <form className={`form`} action="" onSubmit={handleAddToList}>
+      <textarea name="" id="feedback-textarea" spellCheck={false} placeholder="bla" value={text} onChange={handleTextInput}></textarea>
       <label htmlFor="feedback-textarea">Enter your feedback here, remember to #hashtag the company</label>
       <div>
         <p className="u-italic">{charCount}</p>
