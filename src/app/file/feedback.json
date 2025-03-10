@@ -22,5 +22,14 @@
     "companyName": "Leetcode",
     "text": "Hello! text with hashtag  #Leetcode.",
     "daysAgo": 1
+  },
+
+  {
+    "id": 4,
+    "upvoteCount": 152,
+    "badgeLetter": "L",
+    "companyName": "Leetcode",
+    "text": "Hello! Glad to see you  #Leetcode.",
+    "daysAgo": 1
   }
 ]

@@ -8,8 +8,6 @@ export default function FeedbackForm() {
   const charCount = MAX_CHAR - text.length;
 
   const addItem = useFeedbackStore((state) => state.addItem);
-  // let textHandle = useFeedbackStore((state) => state.textHandle);
-  const addHashtag = useFeedbackStore((state) => state.addHashtag);
 
   const handleAddToList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,8 +23,6 @@ export default function FeedbackForm() {
       alert("Please include a #hashtag for the company name");
       return;
     }
-    const companyTag = text.split(" ").find((word) => word.startsWith("#"));
-    addHashtag(companyTag);
     addItem(text);
     setText("");
   };

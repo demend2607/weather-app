@@ -1,50 +1,39 @@
 import { create } from "zustand";
 
-import { FeedbackItemType, hashtagInitialList, HashtagItemType } from "./InitialState";
+import { FeedbackItemType } from "./InitialState";
 
 interface ItemsContextType {
   items: FeedbackItemType[];
-  hashtags: HashtagItemType[];
-  textHandle: string;
+  loading: boolean;
+  error: null | string;
   addItem: (newItemsText: string) => void;
   upvoteIncreased: (id: number) => void;
-  addHashtag: (newItemsText: string) => void;
+  filteredFeedbackItems: (company: string) => void;
 }
 
-export const useFeedbackStore = create<ItemsContextType>()((set) => ({
+export const useFeedbackStore = create<ItemsContextType>()((set, get) => ({
   items: [],
-  hashtags: hashtagInitialList,
-  textHandle: "",
-  addItem: (newItemsText) => {
+  loading: false,
+  error: null,
+  filteredFeedbackItems: (company) => {
+    set((state) => ({ items: state.items.filter((item) => item.companyName === company) }));
+  },
+  addItem: async (newItemsText) => {
     const companyName = newItemsText
       .split(" ")
       .find((word) => word.startsWith("#"))
       .substring(1);
-    const firstLetter = newItemsText
-      .split(" ")
-      .find((word) => word.startsWith("#"))
-      .substring(1)
-      .charAt(0)
-      .toUpperCase();
 
     const newItem = {
       id: new Date().getTime(),
-      upvoteCount: 0,
-      badgeLetter: firstLetter,
-      companyName: companyName,
       text: newItemsText,
+      upvoteCount: 0,
       daysAgo: 0,
+      companyName: companyName,
+      badgeLetter: companyName.substring(0, 1).toUpperCase(),
     };
 
     set((state) => ({ items: [...state.items, newItem] }));
-  },
-  addHashtag: (newItemsHashtag) => {
-    const hashtagUp = newItemsHashtag.slice(0, 2).toUpperCase() + newItemsHashtag.slice(2); /* toLowerCase() */
-    const newHashtag = {
-      id: new Date().getTime(),
-      text: hashtagUp,
-    };
-    set((state) => ({ hashtags: [...state.hashtags, newHashtag] }));
   },
   upvoteIncreased: (id) => {
     set((state) => ({ items: state.items.map((item) => (item.id === id ? { ...item, upvoteCount: item.upvoteCount + 1 } : item)) }));
