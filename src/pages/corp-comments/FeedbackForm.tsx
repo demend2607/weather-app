@@ -15,11 +15,8 @@ export default function FeedbackForm() {
       alert("Please enter some text");
       return;
     }
-    const companyName = text
-      .split(" ")
-      .find((word) => word.startsWith("#"))
-      ?.substring(1);
-    if (!companyName) {
+    const companyName = text.split(" ").find((word) => word.startsWith("#"));
+    if (!companyName || companyName.length < 3) {
       alert("Please include a #hashtag for the company name");
       return;
     }
