@@ -8,6 +8,7 @@ import Writter from "./pages/writter/Writter";
 import WordAnalytics from "./pages/word-analytics/WordAnalytics";
 import Trekbag from "./pages/trekbag/Trekbag";
 import CorpComments from "./pages/corp-comments/CorpComments";
+import RmtDevMain from "./pages/rmtDev/RmtDevMain";
 
 import "./App.scss";
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/word-analytics" element={<WordAnalytics />} />
         <Route path="/trekbag" element={<Trekbag />} />
         <Route path="/corp-comment" element={<CorpComments />} />
+        <Route path="/rmt-dev" element={<RmtDevMain />} />
       </Route>
     </Routes>
   );

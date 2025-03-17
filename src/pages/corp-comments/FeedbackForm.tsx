@@ -5,23 +5,25 @@ import { useFeedbackStore } from "./lib/feedbackItemsStore";
 
 export default function FeedbackForm() {
   const [text, setText] = useState("");
+  const [formValid, setFormValid] = useState(false);
+  const [formInvalid, setFormInvalid] = useState(false);
   const charCount = MAX_CHAR - text.length;
 
   const addItem = useFeedbackStore((state) => state.addItem);
 
   const handleAddToList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!text) {
-      alert("Please enter some text");
+
+    if (text.includes("#") && text.length > 5) {
+      addItem(text);
+      setFormValid(true);
+      setTimeout(() => setFormValid(false), 3000);
+      return setText("");
+    } else {
+      setFormInvalid(true);
+      setTimeout(() => setFormInvalid(false), 3000);
       return;
     }
-    const companyName = text.split(" ").find((word) => word.startsWith("#"));
-    if (!companyName || companyName.length < 3) {
-      alert("Please include a #hashtag for the company name");
-      return;
-    }
-    addItem(text);
-    setText("");
   };
   const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ export default function FeedbackForm() {
   };
 
   return (
-    <form className={`form`} action="" onSubmit={handleAddToList}>
+    <form className={`form ${formValid ? "form--valid" : formInvalid ? "form--invalid" : ""}`} action="" onSubmit={handleAddToList}>
       <textarea name="" id="feedback-textarea" spellCheck={false} placeholder="bla" value={text} onChange={handleTextInput}></textarea>
       <label htmlFor="feedback-textarea">Enter your feedback here, remember to #hashtag the company</label>
       <div>

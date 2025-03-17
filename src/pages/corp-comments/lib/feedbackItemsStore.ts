@@ -55,7 +55,7 @@ export const useFeedbackStore = create<ItemsContextType>()((set, get) => ({
     // In future will be send to the server with method POST(so we use async)
   },
   upvoteIncreased: (id) => {
-    set((state) => ({ feedbackItems: state.feedbackItems.map((item) => (item.id === id ? { ...item, upvoteCount: item.upvoteCount + 1 } : item)) }));
+    set((state) => ({ feedbackItems: state.feedbackItems.map((item) => (item.id === id ? { ...item, upvoteCount: ++item.upvoteCount } : item)) }));
   },
   fetchData: async () => {
     const controller = new AbortController(); // For request cancellation

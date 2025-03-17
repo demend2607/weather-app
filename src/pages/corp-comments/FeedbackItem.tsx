@@ -7,11 +7,17 @@ import { FeedbackItemType } from "./lib/InitialState";
 
 export default function FeedbackItem({ feedbackItem }: { feedbackItem: FeedbackItemType }) {
   const [open, setOpen] = useState(false);
+
   const upvoteIncreased = useFeedbackStore((state) => state.upvoteIncreased);
+  const handleUpvote = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    upvoteIncreased(feedbackItem.id);
+    e.currentTarget.disabled = true;
+    e.stopPropagation();
+  };
 
   return (
-    <li className={`feedback ${open ? "feedback--expand" : ""}`}>
-      <button onClick={() => upvoteIncreased(feedbackItem.id)}>
+    <li onClick={() => setOpen(!open)} className={`feedback ${open ? "feedback--expand" : ""}`}>
+      <button onClick={handleUpvote}>
         <FontAwesomeIcon icon={faAngleUp} />
         <span>{feedbackItem.upvoteCount}</span>
       </button>
