@@ -1,7 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDownShortWide } from "@fortawesome/free-solid-svg-icons/faArrowDownShortWide";
 export default function Sorting() {
   return (
     <section className="sorting">
-      <i className="fa-solid fa-arrow-down-short-wide"></i>
+      <FontAwesomeIcon icon={faArrowDownShortWide} />
 
       <button className="sorting__button sorting__button--relevant">Relevant</button>
 

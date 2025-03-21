@@ -23,7 +23,7 @@ function App() {
         <Route path="/word-analytics" element={<WordAnalytics />} />
         <Route path="/trekbag" element={<Trekbag />} />
         <Route path="/corp-comment" element={<CorpComments />} />
-        <Route path="/rmt-dev" element={<RmtDevMain />} />
+        <Route path="/rmt-dev/" element={<RmtDevMain />} />
       </Route>
     </Routes>
   );

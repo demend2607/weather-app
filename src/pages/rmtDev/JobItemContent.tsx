@@ -1,46 +1,67 @@
+import { useEffect } from "react";
+
+import { useRmtDevStore } from "./lib/rmtDevStore";
+import Spinner from "../../shared/spinner/Spinner";
 import BookmarkIcon from "./Bookmarks";
 
 export default function JobItemContent() {
-  // return <EmptyJobContent />;
-  return (
+  const jobDetails = useRmtDevStore((state) => state.jobDetailList);
+  const isLoading = useRmtDevStore((state) => state.loading.jobDetails);
+
+  const getActiveJobId = useRmtDevStore((state) => state.getActiveJobId);
+  const fetchJobDetails = useRmtDevStore((state) => state.fetchJobDetails);
+  const jobId = useRmtDevStore((state) => state.jobId);
+
+  useEffect(() => {
+    getActiveJobId();
+
+    window.addEventListener("hashchange", getActiveJobId);
+    if (jobId) {
+      fetchJobDetails();
+    }
+    return () => {
+      window.removeEventListener("hashchange", getActiveJobId);
+    };
+  }, [jobId]);
+
+  return isLoading ? (
+    <Spinner color="l-gray" />
+  ) : jobDetails.length === 0 ? (
+    <EmptyJobContent />
+  ) : (
     <section className="job-details">
       <div>
-        <img
-          src="https://images.unsplash.com/photo-1610374792793-f016b77ca51a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1272&q=100"
-          alt="#"
-        />
+        <img src={jobDetails.coverImgURL} alt="#" />
 
-        <a className="apply-btn" href="https://fictional9thtechwebsite.com/" target="_blank">
+        <a className="apply-btn" href={jobDetails.companyURL} target="_blank">
           Apply
         </a>
 
         <section className="job-info">
           <div className="job-info__left">
-            <div className="job-info__badge">9T</div>
+            <div className="job-info__badge">{jobDetails.badgeLetters}</div>
             <div className="job-info__below-badge">
-              <time className="job-info__time">2d</time>
+              <time className="job-info__time">{jobDetails.daysAgo}d</time>
 
               <BookmarkIcon />
             </div>
           </div>
 
           <div className="job-info__right">
-            <h2 className="second-heading">Front End React Engineer</h2>
-            <p className="job-info__company">9th Tech</p>
-            <p className="job-info__description">
-              Join us as we pursue our disruptive new vision to make machine data accessible, usable, and valuable to everyone.
-            </p>
+            <h2 className="second-heading">{jobDetails.title}</h2>
+            <p className="job-info__company">{jobDetails.company}</p>
+            <p className="job-info__description">{jobDetails.description}</p>
             <div className="job-info__extras">
               <p className="job-info__extra">
                 <i className="fa-solid fa-clock job-info__extra-icon"></i>
-                Full-Time
+                {jobDetails.duration}
               </p>
               <p className="job-info__extra">
                 <i className="fa-solid fa-money-bill job-info__extra-icon"></i>
-                $105,000+
+                {jobDetails.salary}
               </p>
               <p className="job-info__extra">
-                <i className="fa-solid fa-location-dot job-info__extra-icon"></i> Global
+                <i className="fa-solid fa-location-dot job-info__extra-icon"></i> {jobDetails.location}
               </p>
             </div>
           </div>
@@ -53,9 +74,11 @@ export default function JobItemContent() {
               <p className="qualifications__sub-text">Other qualifications may apply</p>
             </div>
             <ul className="qualifications__list">
-              <li className="qualifications__item">React</li>
-              <li className="qualifications__item">Next.js</li>
-              <li className="qualifications__item">Tailwind CSS</li>
+              {jobDetails.qualifications.map((item: string) => (
+                <li key={item} className="qualifications__item">
+                  {item}
+                </li>
+              ))}
             </ul>
           </section>
 
@@ -65,17 +88,20 @@ export default function JobItemContent() {
               <p className="reviews__sub-text">Recent things people are saying</p>
             </div>
             <ul className="reviews__list">
-              <li className="reviews__item">Nice building and food also.</li>
-              <li className="reviews__item">Great working experience.</li>
+              {jobDetails.reviews.map((item: string) => (
+                <li key={item} className="reviews__item">
+                  {item}
+                </li>
+              ))}
             </ul>
           </section>
         </div>
 
-        <footer className="job-details__footer">
+        <div className="job-details__footer">
           <p className="job-details__footer-text">
             If possible, please reference that you found the job on <span className="u-bold">rmtDev</span>, we would really appreciate it!
           </p>
-        </footer>
+        </div>
       </div>
     </section>
   );

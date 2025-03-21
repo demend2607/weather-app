@@ -1,6 +1,6 @@
 import "./spinner.scss";
-
-const Spinner = () => {
-  return <div className="spinner"></div>;
+type SpinnerProps = { color?: string };
+const Spinner = ({ color }: SpinnerProps) => {
+  return <div className={`spinner ${color ? color : ""}`}></div>;
 };
 export default Spinner;

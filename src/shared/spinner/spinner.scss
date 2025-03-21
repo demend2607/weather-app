@@ -7,6 +7,9 @@
   height: 90px;
   animation: spin 1s linear infinite;
 }
+.spinner.l-gray {
+  border-top: 10px solid #a4a9ac;
+}
 
 @keyframes spin {
   0% {

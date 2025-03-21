@@ -1,6 +1,7 @@
 import ResultsCount from "./ResultsCount";
 import SortingControls from "./SortingControls";
 import PaginationControls from "./PaginationControls";
+
 import JobList from "./JobList";
 
 export default function Sidebar() {
@@ -10,7 +11,8 @@ export default function Sidebar() {
         <ResultsCount />
         <SortingControls />
       </div>
-      {/* <JobList /> */}
+
+      <JobList />
       <PaginationControls />
     </div>
   );

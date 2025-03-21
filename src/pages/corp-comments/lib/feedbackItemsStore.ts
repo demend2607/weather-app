@@ -2,9 +2,8 @@ import { create } from "zustand";
 import axios from "axios";
 
 import { FeedbackItemType } from "./InitialState";
-import { useMemo } from "react";
 
-interface ItemsContextType {
+interface FeedbackStoreT {
   feedbackItems: FeedbackItemType[];
   loading: boolean;
   error: null | string;
@@ -17,7 +16,7 @@ interface ItemsContextType {
   fetchData: () => void;
 }
 
-export const useFeedbackStore = create<ItemsContextType>()((set, get) => ({
+export const useFeedbackStore = create<FeedbackStoreT>()((set, get) => ({
   feedbackItems: [],
   loading: false,
   error: "",
