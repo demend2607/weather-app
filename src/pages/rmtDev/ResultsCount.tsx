@@ -1,7 +1,11 @@
-import { useRmtDevStore } from "./lib/rmtDevStore";
+import { useJobItemsPreview } from "./lib/hooks";
 
 export default function ResultsCount() {
-  const jobItemLn = useRmtDevStore((state) => state.jobPreviewList.length);
+  const { totalJobCount } = useJobItemsPreview();
 
-  return <p className="count">{jobItemLn} results</p>;
+  return (
+    <p className="count">
+      <span className="u-bold">{totalJobCount}</span> results
+    </p>
+  );
 }

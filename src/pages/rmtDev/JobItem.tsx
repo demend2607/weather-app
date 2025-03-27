@@ -1,9 +1,9 @@
 import BookmarkIcon from "./Bookmarks";
 
 import { JobItemT } from "./lib/rmtDevStore";
-export default function JobItem({ jobItem }: { jobItem: JobItemT }) {
+export default function JobItem({ jobItem, isActive }: { jobItem: JobItemT; isActive: boolean }) {
   return (
-    <li className="job-item">
+    <li className={`job-item ${isActive ? "job-item--active" : ""}`}>
       <a className="job-item__link" href={`/rmt-dev/#${jobItem.id}`}>
         <div className="job-item__badge">{jobItem.badgeLetters}</div>
 

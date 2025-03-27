@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useRmtDevStore } from "./lib/rmtDevStore";
+
+import { useDebounce } from "./lib/hooks";
 export default function SearchForm() {
-  const [searchText, setSearchText] = useState("");
-
-  const fetchJobs = useRmtDevStore((state) => state.fetchJobPreview);
-
-  useEffect(() => {
-    if (!searchText) return;
-    fetchJobs(searchText);
-  }, [searchText]);
+  const { searchText, setSearchText } = useDebounce();
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
