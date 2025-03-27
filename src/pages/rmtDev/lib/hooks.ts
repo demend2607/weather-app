@@ -9,7 +9,7 @@ type jobDetailApi = {
   public: boolean;
   jobItem: JobItemExpandedT;
 };
-const fetchJobDetails = async (jobId: number): Promise<jobDetailApi> => {
+const fetchJobDetails = async (jobId: number | null): Promise<jobDetailApi> => {
   const response = await axios({
     method: "get",
     url: `https://bytegrad.com/course-assets/projects/rmtdev/api/data/${jobId}`,
@@ -26,19 +26,19 @@ const fetchJobDetails = async (jobId: number): Promise<jobDetailApi> => {
 export function useJobItemsDetail() {
   const jobId = useRmtDevStore((state) => state.jobId);
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["job-detail", jobId],
-    queryFn: () => (jobId ? fetchJobDetails(jobId) : null),
+    queryFn: () => fetchJobDetails(jobId),
     staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: false,
     retry: false,
     enabled: Boolean(jobId),
-    // onError: () => {},
+    throwOnError: true,
   });
 
   const jobItem = data?.jobItem;
 
-  return { jobItem, isLoading } as const;
+  return { jobItem, isLoading, error } as const;
 }
 // ------------------------------------------ fetch job preview ----------------------------------------
 type jobPreviewApi = {
@@ -63,20 +63,19 @@ const fetchJobPreview = async (searchText: string): Promise<jobPreviewApi> => {
 export function useJobItemsPreview() {
   const searchText = useRmtDevStore((state) => state.debounceSearchText);
 
-  const { data, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["job-preview", searchText],
-    queryFn: () => (searchText ? fetchJobPreview(searchText) : null),
+    queryFn: () => fetchJobPreview(searchText),
     staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: false,
     retry: false,
     enabled: Boolean(searchText),
-    // onError: () => {},
   });
 
-  const jobItem = data?.jobItems || [];
-  const totalJobCount = jobItem.length || 0;
+  const jobItems = data?.jobItems || [];
+  const totalJobCount = jobItems.length || 0;
 
-  return { jobItem, totalJobCount, isLoading } as const;
+  return { jobItems, totalJobCount, error, isLoading } as const;
 }
 //  ------------------------------------- Debounce  -----------------------------------------------
 

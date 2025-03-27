@@ -11,7 +11,7 @@ import BookmarkIcon from "./Bookmarks";
 export default function JobItemContent() {
   const { getActiveJobId, jobId } = useRmtDevStore((state) => state);
 
-  const { jobItem, isLoading } = useJobItemsDetail();
+  const { jobItem, isLoading, error } = useJobItemsDetail();
 
   useEffect(() => {
     getActiveJobId();

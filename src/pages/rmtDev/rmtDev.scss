@@ -967,22 +967,22 @@
   }
 
   /* ERROR */
-  .error {
-    background: #fff;
-    padding: 14px 20px;
-    width: 280px;
-    min-height: 46px;
-    border-radius: 3px;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    display: flex;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-120px);
-    transition: all 0.3s;
-  }
+  // .error {
+  //   background: #fff;
+  //   padding: 14px 20px;
+  //   width: 280px;
+  //   min-height: 46px;
+  //   border-radius: 3px;
+  //   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  //   position: absolute;
+  //   top: 15px;
+  //   right: 15px;
+  //   display: flex;
+  //   opacity: 0;
+  //   visibility: hidden;
+  //   transform: translateY(-120px);
+  //   transition: all 0.3s;
+  // }
 
   .error--visible {
     opacity: 1;
