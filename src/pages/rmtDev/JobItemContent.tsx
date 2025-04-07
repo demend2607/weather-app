@@ -6,12 +6,18 @@ import { useJobItemsDetail } from "./lib/hooks";
 import { useRmtDevStore } from "./lib/rmtDevStore";
 
 import Spinner from "../../shared/spinner/Spinner";
-import BookmarkIcon from "./Bookmarks";
+import { BookmarkIcon } from "./Bookmarks";
+import toast from "react-hot-toast";
 
 export default function JobItemContent() {
   const { getActiveJobId, jobId } = useRmtDevStore((state) => state);
-
   const { jobItem, isLoading, error } = useJobItemsDetail();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message);
+    }
+  }, [error]);
 
   useEffect(() => {
     getActiveJobId();
@@ -41,7 +47,7 @@ export default function JobItemContent() {
             <div className="job-info__below-badge">
               <time className="job-info__time">{jobItem.daysAgo}d</time>
 
-              <BookmarkIcon />
+              <BookmarkIcon id={jobItem.id} />
             </div>
           </div>
 

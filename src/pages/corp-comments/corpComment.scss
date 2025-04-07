@@ -72,7 +72,7 @@
   .pattern {
     position: absolute;
     top: 0;
-    z-index: 0;
+    z-index: -1;
   }
 
   .pattern::selection {

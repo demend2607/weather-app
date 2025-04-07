@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { BookmarksButton } from "./Bookmarks";
 
 import Header, { HeaderTop } from "./Header";
@@ -23,6 +24,7 @@ const RmtDevMain = () => {
         <Sidebar />
         <JobItemContent />
       </div>
+      <Toaster position={`top-right`} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import BookmarkIcon from "./Bookmarks";
-
 import { JobItemT } from "./lib/rmtDevStore";
+
+import { BookmarkIcon } from "./Bookmarks";
+
 export default function JobItem({ jobItem, isActive }: { jobItem: JobItemT; isActive: boolean }) {
   return (
     <li className={`job-item ${isActive ? "job-item--active" : ""}`}>
@@ -13,7 +14,7 @@ export default function JobItem({ jobItem, isActive }: { jobItem: JobItemT; isAc
         </div>
 
         <div className="job-item__right">
-          <BookmarkIcon />
+          <BookmarkIcon id={jobItem.id} />
           <time className="job-item__time">{jobItem.daysAgo}d</time>
         </div>
       </a>
