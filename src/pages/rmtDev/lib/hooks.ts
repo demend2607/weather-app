@@ -4,13 +4,12 @@ import axios from "axios";
 
 import { JOBITEMS_API_URL, ITEMS_PER_PAGE } from "./constants";
 
-import { JobItemExpandedT, JobItemT, useRmtDevStore } from "./rmtDevStore";
+import { useRmtDevStore } from "./rmtDevStore";
+
+import { JobItemT, JobItemExpandedT, jobPreviewApi, jobDetailApi } from "./types";
 
 // -------------------------------------------- Fetch job details ----------------------------------------
-type jobDetailApi = {
-  public: boolean;
-  jobItem: JobItemExpandedT;
-};
+
 const fetchJobDetails = async (jobId: number | null): Promise<jobDetailApi> => {
   const response = await axios({
     method: "get",
@@ -65,11 +64,7 @@ export function useJobItemsBookmark() {
   return { jobItem: data, isLoading, error } as const;
 }
 // ------------------------------------------ Fetch job preview ----------------------------------------
-type jobPreviewApi = {
-  public: boolean;
-  sorted: boolean;
-  jobItems: JobItemT[];
-};
+
 const fetchJobPreview = async (searchText: string): Promise<jobPreviewApi> => {
   const response = await axios({
     method: "get",

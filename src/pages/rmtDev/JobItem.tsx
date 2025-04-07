@@ -1,4 +1,4 @@
-import { JobItemT } from "./lib/rmtDevStore";
+import { JobItemT } from "./lib/types";
 
 import { BookmarkIcon } from "./Bookmarks";
 

@@ -16,6 +16,7 @@ export function BookmarkIcon({ id }: { id: number }) {
       onClick={(e) => {
         toggleBookMark(id);
         e.preventDefault();
+        e.stopPropagation();
       }}
     >
       <BookmarkFilledIcon className={bookMarkedIds.includes(id) ? "filled" : ""} />
@@ -49,13 +50,7 @@ const BookmarksPopover = forwardRef<HTMLDivElement>(function (_, ref) {
   return (
     <div className="bookmarks-popover" ref={ref}>
       <ul className="job-list">
-        {isLoading ? (
-          <Spinner color="l-gray" />
-        ) : jobItem.length === 0 ? (
-          <div>Track your favorite jobs here</div>
-        ) : (
-          jobItem.map((job) => <JobItem key={job?.id} jobItem={job} isActive={job?.id === jobId} />)
-        )}
+        {isLoading ? <Spinner color="l-gray" /> : jobItem.map((job) => <JobItem key={job?.id} jobItem={job} isActive={job?.id === jobId} />)}
       </ul>
     </div>
   );
